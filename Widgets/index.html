@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+	<meta name="description" content="Custom web components, simple widgets for later reusage" />
+	<meta name="keywords" content="button, buttons, spinning circle, gauge, sliders, switches, modal" />
+	<meta name="author" content="Marek Gudalewicz" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Widgets</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="Buttons/buttonCUstomWebComponent.css">
+
+    <script src="CommonJS/niceLogger.js" defer></script>
+    <script src="CommonJS/abstractWebComponent.js" defer></script>
+    <script src="CommonJS/HeadlineLogo.js" defer></script>
+
+    <script src = "Modal/hidable-modal.js" defer></script>
+    <script src = "Modal/killable-modal.js" defer></script>
+    <script src = "Switches/multiSlider.js" defer></script>
+    <script src = "Switches/sliders.js" defer></script>
+    <script src = "CommonJS/codePresentationWebElement.js" defer></script>
+    <script src = "Buttons/buttonCodeSnippetLoader.js" defer></script>
+    <script src = "Buttons/codeSnippets.js" defer></script>
+    <script src = "Buttons/abstractButtonComponent.js" defer></script>
+    <!-- <script src = "Buttons/circleButton.js" defer></script> -->
+
+    <script src = "Buttons/CustomButton.js" defer></script>
+    <script src = "Buttons/customButtonGeneral.js" defer></script>
+    <script src = "Buttons/sampleButton.js" defer></script>
+    <script src = "Buttons/GrowButton.js" defer></script>
+    <script src = "Buttons/ShrinkButton.js" defer></script>
+    <script src = "Buttons/PulseButton.js" defer></script>
+    <script src = "Buttons/PulseGrowButton.js" defer></script>
+    <script src = "Buttons/PushButton.js" defer></script>
+    <script src = "Buttons/PopButton.js" defer></script>
+    <script src = "Buttons/CirclsWhereClickedButton.js" defer></script>
+    <script src = "Buttons/buttonCustomWebComponent.js" defer></script>
+
+    <script src = "WaitingCircles/waitingCircleCodeSnippetLoader.js" defer></script>
+    <!-- <script src = "WaitingCircles/waitingCircleAbstractComponent.js" defer></script> -->
+    <script src = "WaitingCircles/waitingCircleGeneralClass.js" defer></script>
+    <script src = "WaitingCircles/SampleWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/DropWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/DotsSimpleWaitngCircle.js" defer></script>
+    <script src = "WaitingCircles/RollerCosterWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/WaterCirclesWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/GrowingRingWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/BlingingDotsWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/BubblingCirclesWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/waitingCircle.js" defer></script>
+    <script src = "WaitingCircles/GrowingRingSVGWaitingCircle.js" defer></script>
+
+    <script src = "Gauge/valueTextboxContentManager.js" defer></script>
+    <script src = "Gauge/ArcDrawer.js" defer></script>
+    <script src = "Gauge/svgArcManagerForGauge.js" defer></script>
+    <script src = "Gauge/ArcGaugeAbstractComponent.js" defer></script>
+    <script src = "Gauge/percentageGauge.js" defer></script>
+    <script src = "Gauge/SpeedGauge_component.js" defer></script>
+
+    <script src = "LineGauge/lineGauge.js" defer></script>
+
+    <!-- <script src = "CommonJS/presentSingleElement.js" defer></script> -->
+    <script src = "CommonJS/Presenter/PresenterMethodProvider.js" defer></script>
+    <script src = "CommonJS/Presenter/ArcGaugeWrapper.js" defer></script>
+    <script src = "CommonJS/Presenter/ButtonWrapper.js" defer></script>
+    <script src = "CommonJS/Presenter/LineGaugeWrapper.js" defer></script>
+    <script src = "CommonJS/Presenter/WaitingCircleWrapper.js" defer></script>
+    <script src = "CommonJS/Presenter/presentSingleElement.js" defer></script>
+    <!-- <script src = "CommonJS/menuNavigator.js" defer></script> -->
+    <script src = "CommonJS/navMenuStyleApplier.js" defer></script>
+    <script src = "CommonJS/navMenuCSS.js" defer></script>
+</head>
+    <body class = "center">
+        <div class="background-effect-cover"></div>
+        <div class="wrapper column">
+            <div class="headline center column">
+                <head-line>Widgets</head-line>
+                <div class="inline">
+                    <div class="h3">Inspired by</div>
+                    <a href="https://ianlunn.github.io/Hover" target="_blank" class="links"><i>https://ianlunn.github.io/Hover/</i></a>
+                </div>
+                <nav>
+                    <div class="nav-button" data-bind-with-id = 'buttons-container-id'>Buttons</div>
+                    <div class="nav-button" data-bind-with-id = 'waiting-circle-container-id'>Waiting-circles</div>
+                    <div class="nav-button" data-bind-with-id = 'switches-container-id'>Switches</div>
+                    <div class="nav-button" data-bind-with-id = 'gauge-container-id'>Gauge</div>
+                    <div class="nav-button" data-bind-with-id = 'others-container-id'>Other</div>
+                </nav>
+            </div>
+
+            <div class="content-display">
+                <div class="widget-container-wrapper row">
+                    <div class="widgets-container movable column" id = "buttons-container-id">
+
+                        <div class="content-headline"><div class="h2 center">Buttons</div></div>
+
+                        <div class="widget-items center">
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "sample-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "grow-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "shrink-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "pulse-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "pulse-grow-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "circle-where-clicked-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "push-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "pop-button"></single-element-presenter>
+                        </div>
+                    </div>
+                    <div class="widgets-container movable" id = "waiting-circle-container-id">
+                        <div class="content-headline"><div class="h2 center">Waiting circles</div></div>
+                        <div class="widget-items center">
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "sample-waiting-circle"></single-element-presenter>
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "drop-waiting-circle"></single-element-presenter>
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "dots-simple-waiting-circle"></single-element-presenter>
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "roller-coster-waiting-circle"></single-element-presenter>
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "water-circles-waiting-circle"></single-element-presenter>
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "growing-ring-waiting-circle"></single-element-presenter>    
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "growing-ring-SVG-waiting-circle"></single-element-presenter>
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "blinking-dots-waiting-circle"></single-element-presenter>    
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "bubbling-circles-waiting-circle"></single-element-presenter>    
+                        </div>
+                    </div>
+                    <div class="widgets-container movable" id = "switches-container-id">
+                        <div class="content-headline"><div class="h2 center">Switches</div></div>
+
+                        <div class="widget-items center">
+                        </div>
+                    </div>
+                    <div class="widgets-container movable" id = "gauge-container-id">
+                        <div class="content-headline"><div class="h2 center">Gauge</div></div>
+
+                        <div class="widget-items center">
+                            <single-element-presenter data-element-type="degree-gauge"></single-element-presenter>
+                            <single-element-presenter data-element-type="percentage-gauge"></single-element-presenter>
+                            <single-element-presenter data-element-type="line-gauge"></single-element-presenter>
+                        </div>
+                    </div>
+                    <div class="widgets-container movable" id = "others-container-id">
+                        <div class="content-headline"><div class="h2 center">Other</div></div>
+
+                        <div class="widget-items center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </body>
+</html>
