@@ -10,11 +10,14 @@ class WaitingCircle extends HTMLElement{
             'drop-waiting-circle': DropWaitingCircle,
             'dots-simple-waiting-circle': DotsSimpleWaitnigCirlce,
             'roller-coster-waiting-circle': RollerCosterWaitingCircle,
+            'dark-roller-coster-waiting-circle': RollerCosterWaitingCircle_DarkTheme,
             'water-circles-waiting-circle': WaterCirclesWaitingCircle,
             'growing-ring-waiting-circle': GrowingRingWaitingCircle,
             'blinking-dots-waiting-circle': BlinkingDotsWaitingCircle,
             'bubbling-circles-waiting-circle': BubblingCirclesWaitingCircle,
-            'growing-ring-SVG-waiting-circle':GrowingRingSVGWaitingCircle
+            'growing-ring-SVG-waiting-circle':GrowingRingSVGWaitingCircle,
+            'cube-waiting-circle':CubeWaitingCircle,
+            'dark-cube-waiting-circle':CubeWaitingCircle_DarkTheme
         }
         
 

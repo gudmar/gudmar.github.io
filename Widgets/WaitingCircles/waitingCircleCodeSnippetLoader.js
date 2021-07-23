@@ -265,6 +265,89 @@ class WaitngCircleDetailsDB{
 </pre>`
                 
             },
+
+            'dark-roller-coster-waiting-circle': {
+                innerCode: 
+`
+<p>Article how to emulate neon effects with css is available here: <a href = "https://css-tricks.com/how-to-create-neon-text-with-css/">Link</a></p>
+<b>CSS</b>
+<pre>
+.dark-roller-coster-waiting-circle {
+    position: absolute;
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+  }
+  .dark-roller-coster-waiting-circle div {
+    animation: roller-coster-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: calc( var(--circle-radius) * 0.5); 
+  }
+
+  .dark-roller-coster-waiting-circle div {
+      width: calc( var(--circle-radius) * 0.1);
+      height: calc( var(--circle-radius) * 0.1);
+      border-radius: 50%;
+      background-color: var(--color-dark);
+      transform: translateX(calc ( var(--circle-radius) * 0.5));
+      position: absolute;
+  }
+  .dark-roller-coster-waiting-circle div:nth-child(1) {
+    animation-delay: -0.045s;
+  }
+  .dark-roller-coster-waiting-circle div:nth-child(2) {
+    animation-delay: -0.09s;
+  }
+  .dark-roller-coster-waiting-circle div:nth-child(3) {
+    animation-delay: -0.135s;
+  }
+  .dark-roller-coster-waiting-circle div:nth-child(4) {
+    animation-delay: -0.18s;
+  }
+  .dark-roller-coster-waiting-circle div:nth-child(5) {
+    animation-delay: -0.225s;
+  }
+  .dark-roller-coster-waiting-circle div:nth-child(6) {
+    animation-delay: -0.27s;
+  }
+
+  .color-theme-blue>div{
+    box-shadow: 
+        0 0 7px   #0f7,
+        0 0 10px  #0f7,
+        0 0 20px  #0f7,
+        0 0 40px  #0f7,
+        0 0 80px  #0f7,
+        0 0 90px  #0f7,
+        0 0 100px #0f7,
+        0 0 150px #0f7,
+        0 0 170px #0f7,
+        0 0 200px #0f7;
+    z-index: 130;
+}
+
+  @keyframes roller-coster-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+</style>
+</pre>
+<b>HTML</b>
+<pre>
+&lt;div class="roller-coster-waiting-circle size-small circle">
+    &lt;div>&lt;/div>
+    &lt;div>&lt;/div>
+    &lt;div>&lt;/div>
+    &lt;div>&lt;/div>
+    &lt;div>&lt;/div>
+    &lt;div>&lt;/div>
+&lt;/div>
+</pre>`
+                
+            },
     
             'water-circles-waiting-circle': {
                 'innerCode': 
@@ -588,6 +671,8 @@ getElementsToBeLocadetOnCircle(nrOfElements){
                 
                 `
             },
+
+
             'bubbling-circles-waiting-circle': {
                 'innerCode': 
 `
@@ -662,6 +747,230 @@ getElementsToBeLocadetOnCircle(nrOfElements){
 </pre>
 `  
             },
+
+
+            'cube-waiting-circle': {
+                'innerCode': 
+`
+<b>CSS</b>
+<pre>
+*{
+    --border-width: 3px;
+}
+.size-small{
+    --cube-side-size: 40px;
+}
+
+.color-theme-blue{
+    --cube-border-color: blue;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+
+.cube{
+    z-index: 8;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    animation: rotate;
+    width: var(--cube-side-size);
+    height: var(--cube-side-size);
+}
+.rotate{
+    animation: rotate-cube 1.75s infinite linear;
+}
+
+.wall {
+    position: absolute;
+    width: var(--cube-side-size);
+    height: var(--cube-side-size);
+    border: var(--cube-border-color) solid var(--border-width);
+}
+
+.back{
+    transform: translateZ( calc( -1 * calc( var(--cube-side-size) + calc( 2 *var(--border-width) )) ));
+}
+.top {
+    transform: rotateX(-90deg);
+    transform-origin: top;
+}
+.bottom {
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+}
+.left {
+    transform: rotateY(90deg);
+    transform-origin: left;
+}
+.right {
+    transform: rotateY(-90deg);
+    transform-origin: right;
+}
+
+
+@keyframes rotate-cube {
+    from { transform: rotateX(0deg) rotateZ(0deg);}
+    to { transform: rotateX(359deg) rotateZ(359deg);}
+}
+
+@keyframes xrotate-cube {
+    from { transform: rotateX(0deg);}
+    to { transform: rotateX(359deg);}
+}
+
+.placer{
+    position: relative;
+    transform: translateZ(calc( var(--cube-side-size) * 0.5));
+    transform-style: preserve-3d;
+}
+
+
+</style>
+</pre>
+<b>HTML</b>
+<pre>
+&lt;div class="wrapper center size-small">
+    &lt;div class="cube rotate circle color-theme-blue">
+        &lt;div class="placer">
+            &lt;div class="wall front">&lt;/div>
+            &lt;div class="wall back">&lt;/div>
+            &lt;div class="wall top">&lt;/div>
+            &lt;div class="wall bottom">&lt;/div>
+            &lt;div class="wall left">&lt;/div>
+            &lt;div class="wall right">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+</pre>
+`  
+
+            },
+
+
+            'dark-cube-waiting-circle': {
+                'innerCode': 
+`
+<b>CSS</b>
+<pre>
+*{
+    --border-width: 3px;
+}
+.size-small{
+    --cube-side-size: 40px;
+}
+
+.color-theme-blue{
+    --cube-border-color: rgb(200, 200, 255);
+}
+
+.color-theme-blue>div>div{
+    box-shadow: 
+        0 0 7px   #07f,
+        0 0 10px  #07f,
+        0 0 20px  #07f,
+        0 0 40px  #07f,
+        0 0 80px  #07f,
+        0 0 90px  #07f,
+        inset 0 0 7px   #07f,
+        inset 0 0 10px  #07f,
+        inset 0 0 20px  #07f,
+        inset 0 0 50px  #07f,
+        inset 0 0 40px  #07f;               
+    z-index: 130;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+
+.cube{
+    z-index: 8;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    animation: rotate;
+    width: var(--cube-side-size);
+    height: var(--cube-side-size);
+}
+.rotate{
+    animation: rotate-cube 1.75s infinite linear;
+}
+
+.wall {
+    position: absolute;
+    width: var(--cube-side-size);
+    height: var(--cube-side-size);
+    border: var(--cube-border-color) solid var(--border-width);
+}
+
+.back{
+    transform: translateZ( calc( -1 * calc( var(--cube-side-size) + calc( 2 *var(--border-width) )) ));
+}
+.top {
+    transform: rotateX(-90deg);
+    transform-origin: top;
+}
+.bottom {
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+}
+.left {
+    transform: rotateY(90deg);
+    transform-origin: left;
+}
+.right {
+    transform: rotateY(-90deg);
+    transform-origin: right;
+}
+
+
+@keyframes rotate-cube {
+    from { transform: rotateX(0deg) rotateZ(0deg);}
+    to { transform: rotateX(359deg) rotateZ(359deg);}
+}
+
+@keyframes xrotate-cube {
+    from { transform: rotateX(0deg);}
+    to { transform: rotateX(359deg);}
+}
+
+.placer{
+    position: relative;
+    transform: translateZ(calc( var(--cube-side-size) * 0.5));
+    transform-style: preserve-3d;
+}
+
+
+</style>
+</pre>
+<b>HTML</b>
+<pre>
+&lt;div class="wrapper center size-small">
+    &lt;div class="cube rotate circle color-theme-blue">
+        &lt;div class="placer">
+            &lt;div class="wall front">&lt;/div>
+            &lt;div class="wall back">&lt;/div>
+            &lt;div class="wall top">&lt;/div>
+            &lt;div class="wall bottom">&lt;/div>
+            &lt;div class="wall left">&lt;/div>
+            &lt;div class="wall right">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+</pre>
+`  
+
+            },            
 
 
             'growing-ring-SVG-waiting-circle': {

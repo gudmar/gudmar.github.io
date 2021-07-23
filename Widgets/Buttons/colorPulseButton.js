@@ -1,7 +1,48 @@
-class PulseGrowButton extends CircleWhereClickedButton{
+class ColorPulseButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
+        this.context = context
+        
     }
+
+    drawACircleInsideElement(event){}
+
+    setButtonToInactiveState({buttonType}){
+        this.changeButtonColorThemeClass('inactive')
+        console.log(buttonType)
+        this.context.shadowRoot.querySelector('.button').classList.remove(buttonType)
+    }
+
+    setButtonToActiveState({colorTheme, buttonType}){
+        this.changeButtonColorThemeClass(colorTheme)
+        this.context.shadowRoot.querySelector('.button').classList.add(buttonType)
+    }
+
+    startButton({buttonType, labelFromAttrib, colorTheme, isActive, onclick}){
+        let getShorterLabel = labelFromAttrib;
+        let labelToDisplay = this.getShorterLabelIfLabelTooLong(labelFromAttrib);
+        this.addStringContentToShadowRoot(this._getTemplate())
+        this.button = this.context.shadowRoot.querySelector('.button')
+        this.setButtonType(buttonType);
+        this.setButtonLabel(labelFromAttrib)
+        this.addTooltipEvents();
+
+        let circle = this.context.shadowRoot.querySelector('.circle')
+        
+        let moveCirclePointer = function(event){
+            if (this.context.state.isActive == false) return null;
+            let mouseCords = this.getClickPointInElementRelativeToButton(event)
+            circle.style.left = mouseCords.x + 'px';
+            circle.style.top = mouseCords.y + 'px';   
+            circle.classList.remove('hidden')
+        }.bind(this)
+        let hideCircle = function(event){
+            circle.classList.add('hidden')
+        }
+        this.context.shadowRoot.querySelector('.button').addEventListener('mousedown', moveCirclePointer)
+        document.querySelector('body').addEventListener('mouseup', hideCircle)
+    }
+    
 
     _getTemplate(){
         return `
@@ -9,8 +50,24 @@ class PulseGrowButton extends CircleWhereClickedButton{
             *{
                 position: relative;
             }
+            .circle{
+                position: absolute;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background-color: yellow;
+                opacity: 0.5;
+                transform: translate(-50%, -50%);
+                mix-blend-mode: difference;
+                z-index: 40;
+            }
+            .hidden{
+                visibility: hidden;
+            }
+
             .button-wrapper{
                 display: inline-block
+                overflow: hidden;
             }
             .button-big{
                 --button-font-size: 1.5rem;
@@ -64,7 +121,6 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 justify-content: center;
                 align-items: center;
                 display: flex;
-                overflow: hidden;
                 text-align: center;
                 color: var(--button-fg);
                 background-color: var(--button-bg);
@@ -72,7 +128,7 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 border: solid thin var(--button-border-color);
                 border-radius: 5px;
                 padding: var(--button-padding);
-                transition: 0.2s;
+                overflow:hidden;
             }
 
             .color-theme-inactive:hover{
@@ -91,45 +147,19 @@ class PulseGrowButton extends CircleWhereClickedButton{
             }
 
 
-            .circle{
-                position: absolute;
-                border-radius: 50%;
-                width: 0;
-                height: 0;
-                background-color: var(--button-fg);
-                transform: translate(-50%, -50%);
-                overflow: hidden;
+            .color-pulse-button:hover {
+                animation: color-pulse 0.9s linear alternate infinite;
             }
-
-            .circle>span{
-                color: var(--button-bg);
-                position: absolute;
+            @keyframes color-pulse {
+                100% {color: var(--button-bg); background-color: var(--button-fg);}
             }
 
 
-            .pulse-grow-button:after {   /* ANTIJITTER */
-                position: absolute;
-                content: "";
-                width: 150%;
-                heigth: 150%;
-                transfrom: translate(-50%, -50%);
-            }
-
-            .pulse-grow-button:hover {
-                cursor: pointer;
-                animation: pulse-grow 0.5s alternate infinite ease-in;
-            }	
-            
-            @keyframes pulse-grow{
-                0%     { transform: scale(1);}
-                100%     { transform: scale(1.1);}
-            }
-
-
-            
             </style>
+
             <div class = "button-wrapper">
                 <div class="button color-theme-blue position-right-top button-big" >
+                    <div class = "circle hidden"></div>
                     <span></span>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-class PulseGrowButton extends CircleWhereClickedButton{
+class SkewButton extends CustomButtonGeneral{
     constructor(context){
         super(context);
     }
@@ -64,7 +64,6 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 justify-content: center;
                 align-items: center;
                 display: flex;
-                overflow: hidden;
                 text-align: center;
                 color: var(--button-fg);
                 background-color: var(--button-bg);
@@ -72,7 +71,6 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 border: solid thin var(--button-border-color);
                 border-radius: 5px;
                 padding: var(--button-padding);
-                transition: 0.2s;
             }
 
             .color-theme-inactive:hover{
@@ -90,46 +88,40 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
-
-            .circle{
-                position: absolute;
-                border-radius: 50%;
-                width: 0;
-                height: 0;
-                background-color: var(--button-fg);
-                transform: translate(-50%, -50%);
-                overflow: hidden;
+            .skew-button {
+                transition: 0.3s;	
+            }
+            .skew-button:hover {
+                transform: skewX(-30deg);	
             }
 
-            .circle>span{
-                color: var(--button-bg);
-                position: absolute;
-            }
-
-
-            .pulse-grow-button:after {   /* ANTIJITTER */
-                position: absolute;
-                content: "";
+            .skew-button:hover > shew-button:after{
                 width: 150%;
-                heigth: 150%;
-                transfrom: translate(-50%, -50%);
+                height: 150%;
             }
 
-            .pulse-grow-button:hover {
-                cursor: pointer;
-                animation: pulse-grow 0.5s alternate infinite ease-in;
-            }	
-            
-            @keyframes pulse-grow{
-                0%     { transform: scale(1);}
-                100%     { transform: scale(1.1);}
+            .shutter{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                width: 100%;
+                width: 100%;
+                height: 100%;
+                margin:0;
+                background-color: rgba(250, 250, 250, 0.5);
+                transform: scaleY(0);
+                transition: 0.3s;
+            }
+            .skew-button:active > .shutter{
+                transform: scaleY(1);
+                transition-timing-function: cubic-bezier(.8,2,0,0);
             }
 
-
-            
             </style>
+
             <div class = "button-wrapper">
                 <div class="button color-theme-blue position-right-top button-big" >
+                    <div class = "shutter"></div>
                     <span></span>
                 </div>
             </div>
