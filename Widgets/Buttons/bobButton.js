@@ -1,4 +1,4 @@
-class PulseGrowButton extends CircleWhereClickedButton{
+class BobButton extends CustomButtonGeneral{
     constructor(context){
         super(context);
     }
@@ -64,7 +64,6 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 justify-content: center;
                 align-items: center;
                 display: flex;
-                overflow: hidden;
                 text-align: center;
                 color: var(--button-fg);
                 background-color: var(--button-bg);
@@ -72,7 +71,6 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 border: solid thin var(--button-border-color);
                 border-radius: 5px;
                 padding: var(--button-padding);
-                transition: 0.2s;
             }
 
             .color-theme-inactive:hover{
@@ -90,46 +88,46 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
+            .bob-button {
+                transition: 0.5s
+            }
+            .bob-button:after {
+              position: absolute;
+              content:  "";
+              width: 100%;
+              height: 110%;
+              bottom: -40%;
+            }
+            .bob-button:hover {
+                animation: bob 0.5s alternate infinite ease-in;
+            }
 
-            .circle{
+            @keyframes  bob {
+                to {transform: translate(0, -20%);}
+            }
+
+            .shutter{
+                width: 100%;
+                height: 100%;
                 position: absolute;
-                border-radius: 50%;
-                width: 0;
-                height: 0;
-                background-color: var(--button-fg);
-                transform: translate(-50%, -50%);
-                overflow: hidden;
+                width: 100%;
+                width: 100%;
+                height: 100%;
+                margin:0;
+                background-color: rgba(250, 250, 250, 0.5);
+                transform: scaleY(0);
+                transition: 0.3s;
+            }
+            .bob-button:active > .shutter{
+                transform: scaleY(1);
+                transition-timing-function: cubic-bezier(.8,2,0,0);	/* transition after mouse leave is ease-out, on hover cubic-beizer */
             }
 
-            .circle>span{
-                color: var(--button-bg);
-                position: absolute;
-            }
-
-
-            .pulse-grow-button:after {   /* ANTIJITTER */
-                position: absolute;
-                content: "";
-                width: 150%;
-                heigth: 150%;
-                transfrom: translate(-50%, -50%);
-            }
-
-            .pulse-grow-button:hover {
-                cursor: pointer;
-                animation: pulse-grow 0.5s alternate infinite ease-in;
-            }	
-            
-            @keyframes pulse-grow{
-                0%     { transform: scale(1);}
-                100%     { transform: scale(1.1);}
-            }
-
-
-            
             </style>
+
             <div class = "button-wrapper">
                 <div class="button color-theme-blue position-right-top button-big" >
+                    <div class = "shutter"></div>
                     <span></span>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-class PulseGrowButton extends CircleWhereClickedButton{
+class RotateButton extends CustomButtonGeneral{
     constructor(context){
         super(context);
     }
@@ -64,7 +64,7 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 justify-content: center;
                 align-items: center;
                 display: flex;
-                overflow: hidden;
+                // overflow: hidden;
                 text-align: center;
                 color: var(--button-fg);
                 background-color: var(--button-bg);
@@ -106,30 +106,41 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 position: absolute;
             }
 
-
-            .pulse-grow-button:after {   /* ANTIJITTER */
-                position: absolute;
+            .rotate-button {
+                transition: 0.5s;
+            }
+            .rotate-button:after {
                 content: "";
-                width: 150%;
-                heigth: 150%;
-                transfrom: translate(-50%, -50%);
+                position: absolute;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                transform: (-50%, -50%);
+                z-index: -1;
             }
-
-            .pulse-grow-button:hover {
-                cursor: pointer;
-                animation: pulse-grow 0.5s alternate infinite ease-in;
-            }	
-            
-            @keyframes pulse-grow{
-                0%     { transform: scale(1);}
-                100%     { transform: scale(1.1);}
+            .rotate-button:hover {
+                transform: rotate(345deg);
             }
-
+            .shutter{
+                position: absolute;
+                width: 0px;
+                height: 100%;
+                margin:0;
+                background-color: rgba(250, 250, 250, 0.5);
+                transition: 0.3s;
+            }
+            .rotate-button:active > .shutter{
+                width: 100%;
+                height: 100%;
+                transform: rotate(180deg);
+                transition: 0.3s;
+            }
 
             
             </style>
             <div class = "button-wrapper">
                 <div class="button color-theme-blue position-right-top button-big" >
+                    <div class = "shutter"></div>
                     <span></span>
                 </div>
             </div>

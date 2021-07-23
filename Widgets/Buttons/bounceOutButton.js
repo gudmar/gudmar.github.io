@@ -1,4 +1,4 @@
-class PulseGrowButton extends CircleWhereClickedButton{
+class BounceOutButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
     }
@@ -106,25 +106,13 @@ class PulseGrowButton extends CircleWhereClickedButton{
                 position: absolute;
             }
 
-
-            .pulse-grow-button:after {   /* ANTIJITTER */
-                position: absolute;
-                content: "";
-                width: 150%;
-                heigth: 150%;
-                transfrom: translate(-50%, -50%);
+            .bounce-out-button {
+                transition: 0.5s;
             }
-
-            .pulse-grow-button:hover {
-                cursor: pointer;
-                animation: pulse-grow 0.5s alternate infinite ease-in;
-            }	
-            
-            @keyframes pulse-grow{
-                0%     { transform: scale(1);}
-                100%     { transform: scale(1.1);}
+            .bounce-out-button:hover {
+                transform: scale(1.2);
+                transition-timing-function: cubic-bezier(0.47, 2, 0.31, -0.36);
             }
-
 
             
             </style>
