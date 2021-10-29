@@ -1,11 +1,8 @@
-class DropWaitingCircle extends WaitingCircleGeneralClass{
+class RectangleWaitingCircle extends WaitingCircleGeneralClass{
     constructor(context){
         super();
         this.context = context; // this from customWebComponent
     }
-
-
-
 
 
     _getTemplate(){
@@ -40,21 +37,23 @@ class DropWaitingCircle extends WaitingCircleGeneralClass{
             position: relative;
             width: var(--circle-radius);
             height: var(--circle-radius);
+            clip-path: polygon(0% 0%, 0% 100%, 3% 100%, 3% 3%, 98% 2%, 98% 97%, 2% 97%, 3% 100%, 100% 100%, 100% 0);
+            clip-path: polygon(0% 0%, 0% 100%, 10% 100%, 10% 10%, 91% 10%, 91% 89%, 10% 88%, 10% 100%, 100% 100%, 100% 0%);
         }
 
-        .circle{
+        .rotating-circle{
             position: absolute;
             border-radius: 50%;
-            width: var(--circle-radius);
-            height: var(--circle-radius);
-            z-index: 25;
-            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            z-index: 25
+
         }
 
-        .sample-waiting-circle {
+        .rectangle-waiting-circle {
             border: solid thick var(--color-light);
             border-top: solid thick var(--color-dark);
-            border-width: calc( var(--circle-radius) * 0.1 );
+            border-width: calc( var(--circle-radius) * 1 );
 
         }
         .circle-drop{
@@ -62,9 +61,10 @@ class DropWaitingCircle extends WaitingCircleGeneralClass{
             border-bottom: none;
             border-right: none;
             border-top: solid transparent 5px; /*Transparent, not none !!!*/
-            border-left: solid var(--color-dark) 5px;
+            border-left: solid darkgreen 5px;
             position: absolute;
             border-radius: 50%;
+            border: solid thick var(--color-light);
             border-width: calc( var(--circle-radius) * 0.1 );
             width: var(--circle-radius);
             height: var(--circle-radius);
@@ -81,7 +81,7 @@ class DropWaitingCircle extends WaitingCircleGeneralClass{
 
         </style>
         <div class = "circle wrapper size-${this.size} center">
-            <div class = "circle rotate circle-drop color-theme-${this.colorTheme}"></div>
+            <div class = "circle rotating-circle rectangle-waiting-circle rotate color-theme-${this.colorTheme}"></div>
         </div>
         
         `

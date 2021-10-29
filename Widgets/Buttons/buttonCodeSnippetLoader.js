@@ -4,7 +4,6 @@ class ButtonDetailsDB{
 
     static getDetailsAbout(widgetDescriptor){
         let details = ButtonDetailsDB.getButtonSpecificCode(widgetDescriptor);
-        // console.log(Object.keys(ButtonDetailsDB.get))
         if (details == undefined) return null;
         let beforeCode = details['codeBefore'] == undefined ? '' : details['codeBefore'];
         let innerCode = details['innerCode'] == undefined ? '' : details['innerCode'];
@@ -1219,6 +1218,113 @@ class ButtonDetailsDB{
                 `
             },
 
+            'bounce-down-button': {
+                doNotWrapp: true,
+                innerCode: `
+                <h3>CSS:</h3>
+                <pre>
+
+                .bounce-down-button {
+                    transition: 0.3s;
+                    transition-property: color;
+                    position:relative;
+                }
+                .bounce-down-button:before {
+                 position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    transform: scaleY(0);
+                    color: var(--button-color-focus);
+                    background-color: var(--button-fg);
+                    transition-property: transform;
+                    transition-timing-function: ease-out;
+                    transition-duration: 0.3s;
+                    transform-origin: top;
+                    content: "";
+                    z-index: -1;
+                }
+                .bounce-down-button:hover, .bounce-down-button:focus, .bounce-down-button:active {
+                    color: var(--button-hover-fg);
+                }
+                
+                .bounce-down-button:hover:before, .bounce-down-button:focus:before, .bounce-down-button:active:before {
+                    transform: scaleY(1);
+                    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);	/* transition after mouse leave is ease-out, on hover cubic-beizer */
+                }
+                .bounce-down-button {   
+                    z-index: 1;
+                }
+    
+                </pre>
+                <h3>HTML</h3>
+                <pre>
+&lt;div class = "button-wrapper">
+    &lt;div class="button color-theme-blue bounce-down-button   button-big" >
+        &lt;div class = "shutter"></div>
+            &lt;span>&lt;/span>
+        &lt;/div>
+    &lt;/div>                
+                </pre>
+                `
+            },
+
+            'bounce-to-left-button': {
+                doNotWrapp: true,
+                innerCode: `
+                <h3>CSS:</h3>
+                <pre>
+
+                .bounce-to-left-button {
+                    transition: 0.3s;
+                    transition-property: color;
+                    position:relative;
+                }
+                .bounce-to-left-button:before {
+                 position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    transform: scaleX(0);
+                    color: var(--button-color-focus);
+                    background-color: var(--button-fg);
+                    transition-property: transform;
+                    transition-timing-function: ease-out;
+                    transition-duration: 0.3s;
+                    transform-origin: 100%;
+                    content: "";
+                    z-index: -1;
+                }
+                .bounce-to-left-button:hover, .bounce-to-left-button:focus, .bounce-to-left-button:active {
+                    color: var(--button-hover-fg);
+                }
+                
+                .bounce-to-left-button:hover:before, .bounce-to-left-button:focus:before, .bounce-to-left-button:active:before {
+                    transform: scaleX(1);
+                    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);	/* transition after mouse leave is ease-out, on hover cubic-beizer */
+                }
+                .bounce-to-left-button {   
+                    z-index: 1;
+                }
+    
+                </pre>
+                <h3>HTML</h3>
+                <pre>
+&lt;div class = "button-wrapper">
+    &lt;div class="button color-theme-blue bounce-to-left-button   button-big" >
+        &lt;div class = "shutter"></div>
+            &lt;span>&lt;/span>
+        &lt;/div>
+    &lt;/div>                
+                </pre>
+                `
+            },
+
+            
+
+
             'sweep-to-left-button': {
                 doNotWrapp: true,
                 innerCode: `
@@ -1319,6 +1425,56 @@ class ButtonDetailsDB{
                 `
             },
 
+            'sweep-top-button': {
+                doNotWrapp: true,
+                innerCode: `
+                <h3>CSS:</h3>
+                <pre>
+
+                .sweep-top-button {
+                    transition: 0.3s;
+                    transition-property: color;
+                    position:relative;  /* without this whole screan is animated*/
+                }
+                .sweep-top-button:before {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    transform: scaleY(0);
+                    color: var(--button-color-focus);
+                    background-color: var(--button-fg);
+                    transition-property: transform;
+                    transition-duration: 0.3s;
+                    transform-origin: top;
+                    content: "";
+                    z-index: -1;
+                }
+                .sweep-top-button:hover, .sweep-top-button:focus, .sweep-top-button:active {
+                    color: var(--button-hover-fg);
+                }
+                
+                .sweep-top-button:hover:before, .sweep-top-button:focus:before, .sweep-top-button:active:before {
+                    transform: scaleY(1);
+                }
+                .sweep-top-button {   
+                    z-index: 1;
+                }
+    
+                </pre>
+                <h3>HTML</h3>
+                <pre>
+&lt;div class = "button-wrapper">
+    &lt;div class="button color-theme-blue sweep-top-button   button-big" >
+        &lt;div class = "shutter"></div>
+            &lt;span>&lt;/span>
+        &lt;/div>
+    &lt;/div>                
+                </pre>
+                `
+            },
+
 
             'sweep-to-top-button': {
                 doNotWrapp: true,
@@ -1342,7 +1498,7 @@ class ButtonDetailsDB{
                     background-color: var(--button-fg);
                     transition-property: transform;
                     transition-duration: 0.3s;
-                    transform-origin: top;
+                    transform-origin: bottom;
                     content: "";
                     z-index: -1;
                 }
@@ -1366,6 +1522,183 @@ class ButtonDetailsDB{
             &lt;span>&lt;/span>
         &lt;/div>
     &lt;/div>                
+                </pre>
+                `
+            },
+
+
+            'radial-out-button': {
+                doNotWrapp: true,
+                innerCode: `
+                <h3>CSS:</h3>
+                <pre>
+
+                .radial-out-button {
+                    transition: 0.3s;
+                    transition-property: color;
+                    position:relative;  /* without this whole screan is animated*/
+                    overflow: hidden;
+                }
+                .radial-out-button:before {
+                 position: absolute;
+                    top: -15px;
+                    bottom: -15px;
+                    left: -15px;
+                    right: -15px;
+                    transform: scaleX(0) scaleY(0);
+                    color: var(--button-hover-fg);
+                    background-color: var(--button-hover-bg);
+                    transition-property: transform;
+                    transition-duration: 0.3s;
+                    transform-origin: 50% 50%; /*start from left side*/
+                    border-radius: 50%;
+                    content: "";
+                    z-index: -1;  /* very important to show the caption */
+                }
+                .radial-out-button:hover, .radial-out-button:focus, .radial-out-button:active {
+                    color: var(--button-hover-fg); /* without this no caption */
+                }
+                
+                .radial-out-button:hover:before, .radial-out-button:focus:before, .radial-out-button:active:before {
+                    transform: scaleX(1) scaleY(1);
+                }
+                .radial-out-button {   
+                    z-index: 1; /* very important to show the caption */
+                }
+    
+                </pre>
+                <h3>HTML</h3>
+                <pre>
+&lt;div class = "button-wrapper">
+    &lt;div class="button color-theme-blue radial-out-button   button-big" >
+        &lt;div class = "shutter"></div>
+            &lt;span>&lt;/span>
+        &lt;/div>
+    &lt;/div>                
+                </pre>
+                `
+            },
+
+            'rectangle-out-button': {
+                doNotWrapp: true,
+                innerCode: `
+                <h3>CSS:</h3>
+                <pre>
+
+                .rectangle-out-button {
+                    transition: 0.3s;
+                    transition-property: color;
+                    position:relative; 
+                    overflow: hidden;
+                }
+                .button:hover>span {
+                    z-index: 2;
+                    color: var(--button-hover-fg);
+                    background-color: var(--button-hover-bg);
+                }
+                .rectangle-out-button:before {
+                    position: absolute;
+                    width: 200px;
+                    height: 200px;
+                    transform: scaleX(0) scaleY(0) rotate(45deg);
+                    color: var(--button-bg);
+                    background-color: var(--button-fg);
+                    transition-property: transform;
+                    transition-duration: 0.3s;
+                    transform-origin: 50% 50%;
+                    content: "";
+                    z-index: -1;
+                    overflow: hidden;
+                }
+                .rectangle-out-button:hover, .rectangle-out-button:focus, .rectangle-out-button:active {
+                    color: var(--button-hover-fg);
+                }
+                
+                .rectangle-out-button:hover:before, .rectangle-out-button:focus:before, .rectangle-out-button:active:before {
+                    transform: scaleX(1) scaleY(1) rotate(45deg);;
+                }
+                .rectangle-out-button {   
+                    z-index: 1;
+                }
+    
+                </pre>
+                <h3>HTML</h3>
+                <pre>
+&lt;div class = "button-wrapper">
+    &lt;div class="button color-theme-blue rectangle-out-button   button-big" >
+        &lt;div class = "shutter"></div>
+            &lt;span>&lt;/span>
+        &lt;/div>
+    &lt;/div>                
+                </pre>
+                `
+            },
+
+            'rotate-rectangle-out-button': {
+                doNotWrapp: true,
+                innerCode: `
+                <h2>rotate-rectangle-out-button</h2>
+                Extra shutter element was added to html. It has <code>overflow: hidden</code>, and absolure span with button label inside.
+                Thanks to this solution, when shutter is animating and getting larger, caption inside shutter is of oposite color to caption
+                outside shutter. Unfortunately, due to fact, that shutter is rotating, and span inside has to rotate oposite direction to 
+                emulate effect of statnding still, there is a jitter effect. For now unresolved.
+                <h3>CSS:</h3>
+                <pre>
+                .rotate-rectangle-out-button {
+                    transition-property: color;
+                    position:relative; 
+                    overflow: hidden;
+                    z-index: 1;
+                }
+                
+                .shutter{
+                    display: flex;
+                    justify-content:center;
+                    align-items: center;
+                    position: absolute;
+                    width: 0px;
+                    height: 0px;
+                    transform: rotate(0deg);
+                    transition: var(--animation-time);
+                    background-color: var(--button-hover-bg);
+                    color: var(--button-hober-fg);
+                    overflow: hidden;
+                    z-index: 20;
+                }
+    
+                .rotate-rectangle-out-button:hover>.shutter {
+                    transform: rotate(0deg);
+                    transform-origin: 50% 50%;
+                    transform: rotate(-90deg);
+                    width: 100px;
+                    height: 100px;
+                    transition: var(--animation-time);
+                }
+                .rotate-rectangle-out-button:hover>.shutter>span {
+                    transform: rotate(90deg);
+                    transition: var(--animation-time);
+                }
+                .shutter-label{
+                    position: relative;
+                    position: absolute;
+                    display: inline-block;
+                    color: var(--button-hover-fg);
+                    transition: var(--animation-time);
+                    z-index: 30;
+                }
+    
+                </pre>
+                <h3>HTML</h3>
+                <pre>
+&lt;div class = "button-wrapper">
+    &lt;div class="button color-theme-blue position-right-top button-big" >
+        &lt;div class = "shutter">
+            &lt;span class="shutter-label"></span>
+        &lt;/div>
+        &lt;div class = "circle hidden">&lt;/div>
+        &lt;span class="button-label">&lt;/span>
+    &lt;/div>
+&lt;/div>           
                 </pre>
                 `
             },

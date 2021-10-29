@@ -1,4 +1,4 @@
-class SweepToRightButton extends CircleWhereClickedButton{
+class BounceDownButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
         this.context = context
@@ -145,35 +145,36 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
-
-            .sweep-to-right-button {
+            .bounce-down-button {
                 transition: 0.3s;
                 transition-property: color;
                 position:relative;
             }
-            .sweep-to-right-button:before {
+            .bounce-down-button:before {
              position: absolute;
                 top: 0;
                 bottom: 0;
                 left: 0;
                 right: 0;
-                transform: scaleX(0);
+                transform: scaleY(0);
                 color: var(--button-color-focus);
                 background-color: var(--button-fg);
                 transition-property: transform;
+                transition-timing-function: ease-out;
                 transition-duration: 0.3s;
-                transform-origin: 0%;
+                transform-origin: top;
                 content: "";
                 z-index: -1;
             }
-            .sweep-to-right-button:hover, .sweep-to-right-button:focus, .sweep-to-right-button:active {
+            .bounce-down-button:hover, .bounce-down-button:focus, .bounce-down-button:active {
                 color: var(--button-hover-fg);
             }
             
-            .sweep-to-right-button:hover:before, .sweep-to-right-button:focus:before, .sweep-to-right-button:active:before {
-                transform: scaleX(1);
+            .bounce-down-button:hover:before, .bounce-down-button:focus:before, .bounce-down-button:active:before {
+                transform: scaleY(1);
+                transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);	/* transition after mouse leave is ease-out, on hover cubic-beizer */
             }
-            .sweep-to-right-button {   
+            .bounce-down-button {   
                 z-index: 1;
             }
 
