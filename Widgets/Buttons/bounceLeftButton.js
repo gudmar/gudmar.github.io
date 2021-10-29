@@ -1,4 +1,4 @@
-class SweepToRightButton extends CircleWhereClickedButton{
+class BounceToLeftButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
         this.context = context
@@ -145,13 +145,12 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
-
-            .sweep-to-right-button {
+            .bounce-to-left-button {
                 transition: 0.3s;
                 transition-property: color;
                 position:relative;
             }
-            .sweep-to-right-button:before {
+            .bounce-to-left-button:before {
              position: absolute;
                 top: 0;
                 bottom: 0;
@@ -161,19 +160,21 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 color: var(--button-color-focus);
                 background-color: var(--button-fg);
                 transition-property: transform;
+                transition-timing-function: ease-out;
                 transition-duration: 0.3s;
-                transform-origin: 0%;
+                transform-origin: 100%;
                 content: "";
                 z-index: -1;
             }
-            .sweep-to-right-button:hover, .sweep-to-right-button:focus, .sweep-to-right-button:active {
+            .bounce-to-left-button:hover, .bounce-to-left-button:focus, .bounce-to-left-button:active {
                 color: var(--button-hover-fg);
             }
             
-            .sweep-to-right-button:hover:before, .sweep-to-right-button:focus:before, .sweep-to-right-button:active:before {
+            .bounce-to-left-button:hover:before, .bounce-to-left-button:focus:before, .bounce-to-left-button:active:before {
                 transform: scaleX(1);
+                transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);	/* transition after mouse leave is ease-out, on hover cubic-beizer */
             }
-            .sweep-to-right-button {   
+            .bounce-to-left-button {   
                 z-index: 1;
             }
 

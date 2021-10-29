@@ -37,6 +37,12 @@ class CustomButton1 extends HTMLElement{
             'sweep-to-bottom-button': SweepToBottomButton,
             'sweep-to-top-button': SweepToTopButton,
             'bounce-to-right-button': BounceToRightButton,
+            'bounce-to-left-button': BounceToLeftButton,
+            'bounce-down-button': BounceDownButton,
+            'bounce-top-button': BounceTopButton,
+            'radial-out-button': RadialOutButton,
+            'rectangle-out-button': RectangleOutButton,
+            'rotate-rectangle-out-button': RotateRectangleOutButton,
             'dark-sample-button': DarkSampleButton
         }
         this.maxLabelLenght = 10;

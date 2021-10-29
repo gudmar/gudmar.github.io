@@ -62,6 +62,12 @@
     <script src = "Buttons/sweepToBottomButton.js" defer></script>
     <script src = "Buttons/sweepToTopButton.js" defer></script>
     <script src = "Buttons/bounceRightButton.js" defer></script>
+    <script src = "Buttons/bounceDownButton.js" defer></script>
+    <script src = "Buttons/bounceTopButton.js" defer></script>
+    <script src = "Buttons/bounceLeftButton.js" defer></script>
+    <script src = "Buttons/rectangleOutButton.js" defer></script>
+    <script src = "Buttons/rotateRectangleOutButton.js" defer></script>
+    <script src = "Buttons/buttonRadialOut.js" defer></script>
     
     <script src = "Buttons/buttonCustomWebComponent.js" defer></script>
 
@@ -76,11 +82,36 @@
     <script src = "WaitingCircles/WaterCirclesWaitingCircle.js" defer></script>
     <script src = "WaitingCircles/GrowingRingWaitingCircle.js" defer></script>
     <script src = "WaitingCircles/BlingingDotsWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/flowerWaitingCircle.js" defer></script>
     <script src = "WaitingCircles/BubblingCirclesWaitingCircle.js" defer></script>
     <script src = "WaitingCircles/waitingCircle.js" defer></script>
     <script src = "WaitingCircles/GrowingRingSVGWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/rectangleWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/galaxyWaitingCircle.js" defer></script>
+    <script src = "WaitingCircles/galaxyWaitingCircle_darkTheme.js" defer></script>
     <script src = "WaitingCircles/cubeWaitingCircle.js" defer></script>
     <script src = "WaitingCircles/cubeWaitingCircle_darkTheme.js" defer></script>
+
+    <script src = "SpinningWheel/abstractCustomWebComponent.js" defer></script>
+    <script src = "SpinningWheel/modal.js" defer></script>
+    <script src = "SpinningWheel/modalContentWatcher.js" defer></script>
+    <script src = "SpinningWheel/infoModal.js" defer></script>
+    <script src = "SpinningWheel/colorGenerator.js" defer></script>
+    
+    <script src = "SpinningWheel/stateHandlingAbstractComponent.js" defer></script>
+    <script src = "SpinningWheel/wheelDrawer.js" defer></script>
+    <script src = "SpinningWheel/spinningWheelComponent.js" defer></script>
+    <script src = "SpinningWheel/spinningWheelWithInfoComponent.js" defer></script>
+    <script src = "SpinningWheel/listEditingState.js" defer></script>
+    <!-- <script src = "SpinningWheel/wheelManager.js" defer></script> -->
+    
+    
+    
+
+    
+    
+    <script src = "SpinningWheel/wheelManager.js" defer></script>
+    
 
     <script src = "Gauge/valueTextboxContentManager.js" defer></script>
     <script src = "Gauge/ArcDrawer.js" defer></script>
@@ -91,18 +122,20 @@
 
     <script src = "LineGauge/lineGauge.js" defer></script>
 
-    <!-- <script src = "CommonJS/presentSingleElement.js" defer></script> -->
     <script src = "CommonJS/Presenter/PresenterMethodProvider.js" defer></script>
     <script src = "CommonJS/Presenter/ArcGaugeWrapper.js" defer></script>
     <script src = "CommonJS/Presenter/ButtonWrapper.js" defer></script>
     <script src = "CommonJS/Presenter/LineGaugeWrapper.js" defer></script>
     <script src = "CommonJS/Presenter/WaitingCircleWrapper.js" defer></script>
+    <script src = "CommonJS/Presenter/MultiSwitchWrapper.js" defer></script>
     <script src = "CommonJS/Presenter/presentSingleElement.js" defer></script>
-    <!-- <script src = "CommonJS/menuNavigator.js" defer></script> -->
+
     <script src = "CommonJS/navMenuStyleApplier.js" defer></script>
+
     <script src = "CommonJS/navMenuCSS.js" defer></script>
 </head>
     <body class = "center">
+    <!-- <div class = '_3d-effect'> -->
         <div class="background-effect-cover"></div>
         <div class="wrapper column">
             <div class="headline center column">
@@ -163,6 +196,12 @@
                             <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "sweep-to-bottom-button"></single-element-presenter>
                             <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "sweep-to-top-button"></single-element-presenter>
                             <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "bounce-to-right-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "bounce-to-left-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "bounce-down-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "bounce-top-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "radial-out-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "rectangle-out-button"></single-element-presenter>
+                            <single-element-presenter data-element-type="custom-button-1" data-element-subtype = "rotate-rectangle-out-button"></single-element-presenter>
                             <single-element-presenter data-presenter-light-dark-theme="dark" data-element-type="custom-button-1" data-element-subtype = "dark-sample-button"></single-element-presenter>
                         </div>
                     <!-- </div> -->
@@ -179,14 +218,19 @@
                             <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "growing-ring-waiting-circle"></single-element-presenter>    
                             <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "growing-ring-SVG-waiting-circle"></single-element-presenter>
                             <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "blinking-dots-waiting-circle"></single-element-presenter>    
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "flower-waiting-circle"></single-element-presenter>    
                             <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "bubbling-circles-waiting-circle"></single-element-presenter>    
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "rectangle-waiting-circle"></single-element-presenter>    
+                            <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "galaxy-waiting-circle"></single-element-presenter>    
+                            <single-element-presenter data-element-type = "waiting-circle" data-presenter-light-dark-theme = "dark" data-element-subtype = "galaxy-waiting-circle-dark-theme"></single-element-presenter>    
                             <single-element-presenter data-element-type = "waiting-circle" data-element-subtype = "cube-waiting-circle"></single-element-presenter>    
                             <single-element-presenter data-element-type = "waiting-circle" data-presenter-light-dark-theme = "dark" data-element-subtype = "dark-cube-waiting-circle"></single-element-presenter>    
                         </div>
                     </div>
                     <div class="widgets-container movable" id = "switches-container-id">
                         <div class="content-headline"><div class="h2 center">Switches</div></div>
-
+                            <single-element-presenter data-element-type = "switch" data-element-subtype = "multi-switch"></single-element-presenter>
+                            <single-element-presenter data-element-type = "switch" data-element-subtype = "toggle-switch"></single-element-presenter>
                         <div class="widget-items center">
                         </div>
                     </div>
@@ -200,14 +244,28 @@
                         </div>
                     </div>
                     <div class="widgets-container movable" id = "others-container-id">
-                        <div class="content-headline"><div class="h2 center">Other</div></div>
-
+                        <div class="content-headline"><div class="h2 center">Spinning wheel</div></div>
                         <div class="widget-items center">
+                            <spinning-wheel-info id = "spinning-wheel">
+                                <ul>
+                                    <li data-label = "1">1 content</li>
+                                    <li data-label = "2">2 content</li>
+                                    <li data-label = "3">3 content</li>
+                                </ul>
+                            </spinning-wheel-info>
+                            <editing-wheel-state-list id = "spinning-wheel-editor"><ul></ul></editing-wheel-state-list>
+                            <wheel-alike-components-mediator data-subscribers-ids = "spinning-wheel, spinning-wheel-editor">
+                                <ul>
+                                        <li data-label = "1">1 content</li>
+                                        <li data-label = "2">2 content</li>
+                                        <li data-label = "3">3 content</li>                                        
+                                </ul>
+                            </wheel-alike-components-mdeiator>
                         </div>
                     </div>
                 </div>
             </div>    <!--   !    -->
         </div>
-    
+    <!-- </div> -->
     </body>
 </html>

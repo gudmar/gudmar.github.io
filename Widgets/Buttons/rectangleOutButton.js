@@ -1,4 +1,4 @@
-class SweepToRightButton extends CircleWhereClickedButton{
+class RectangleOutButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
         this.context = context
@@ -48,6 +48,7 @@ class SweepToRightButton extends CircleWhereClickedButton{
             <style>
             *{
                 position: relative;
+                --animation-time: 0.5s;
             }
             .circle{
                 position: absolute;
@@ -77,7 +78,7 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 --button-padding: 5px;
             }
 
-            .color-theme-blue{
+            .color-theme-blue, .color-theme-blue:before{
                 --button-bg: blue;
                 --button-fg: white;
                 --button-hover-fg: rgb(120, 120, 255);
@@ -87,7 +88,7 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 --button-border-color: rgba(0, 0, 0, 0);
             }
 
-            .color-theme-green{
+            .color-theme-green, .color-theme-green:before{
                 --button-bg: GreenYellow;
                 --button-fg: DarkGreen;
                 --button-hover-bg: DarkGreen;
@@ -96,11 +97,11 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 --button-active-fg: black;
                 --button-border-color: DarkGreen;
             }
-            .color-theme-red{
+            .color-theme-red, .color-theme-red:before{
                 --button-bg: rgb(220, 0, 0);
                 --button-fg: white;
-                --button-hover-bg: rgb(150, 0, 0);
-                --button-hover-fg: white;
+                --button-hover-fg: rgb(150, 0, 0);
+                --button-hover-bg: white;
                 --button-active-bg: rgb(200, 200, 255);
                 --button-active-fg: black;
                 --button-border-color: rgba(0, 0, 0, 0);
@@ -145,39 +146,43 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
-
-            .sweep-to-right-button {
-                transition: 0.3s;
+            .rectangle-out-button {
+                transition: var(--animation-time);
                 transition-property: color;
-                position:relative;
+                position:relative; 
+                overflow: hidden;
             }
-            .sweep-to-right-button:before {
-             position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                transform: scaleX(0);
-                color: var(--button-color-focus);
+            .button:hover>span {
+                z-index: 2;
+                color: var(--button-hover-fg);
+                background-color: transparent;
+            }
+            .rectangle-out-button:before {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                transform: scaleX(0) scaleY(0) rotate(45deg);
+                color: var(--button-bg);
                 background-color: var(--button-fg);
                 transition-property: transform;
-                transition-duration: 0.3s;
-                transform-origin: 0%;
+                transition-duration: var(--animation-time);
+                transform-origin: 50% 50%;
                 content: "";
                 z-index: -1;
+                overflow: hidden;
             }
-            .sweep-to-right-button:hover, .sweep-to-right-button:focus, .sweep-to-right-button:active {
+            .rectangle-out-button:hover, .rectangle-out-button:focus, .rectangle-out-button:active {
                 color: var(--button-hover-fg);
             }
             
-            .sweep-to-right-button:hover:before, .sweep-to-right-button:focus:before, .sweep-to-right-button:active:before {
-                transform: scaleX(1);
+            .rectangle-out-button:hover:before, .rectangle-out-button:focus:before, .rectangle-out-button:active:before {
+                transform: scaleX(1) scaleY(1) rotate(45deg);
+                transition-duration: var(--animation-time);
             }
-            .sweep-to-right-button {   
+            .rectangle-out-button {   
                 z-index: 1;
             }
-
-
+            
             </style>
 
             <div class = "button-wrapper">

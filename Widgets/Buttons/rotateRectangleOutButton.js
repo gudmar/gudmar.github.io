@@ -1,4 +1,4 @@
-class SweepToRightButton extends CircleWhereClickedButton{
+class RotateRectangleOutButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
         this.context = context
@@ -40,6 +40,14 @@ class SweepToRightButton extends CircleWhereClickedButton{
         }
         this.context.shadowRoot.querySelector('.button').addEventListener('mousedown', moveCirclePointer)
         document.querySelector('body').addEventListener('mouseup', hideCircle)
+        this.copyButtonContentToShutter()
+    }
+
+    copyButtonContentToShutter(){
+        let buttonContent = this.context.shadowRoot.querySelector(".button-label").innerText;
+        let shutterElement = this.context.shadowRoot.querySelector('.shutter-label');
+        
+        shutterElement.innerText = buttonContent;
     }
     
 
@@ -48,6 +56,7 @@ class SweepToRightButton extends CircleWhereClickedButton{
             <style>
             *{
                 position: relative;
+                --animation-time: 0.5s;
             }
             .circle{
                 position: absolute;
@@ -77,7 +86,7 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 --button-padding: 5px;
             }
 
-            .color-theme-blue{
+            .color-theme-blue, .color-theme-blue:before{
                 --button-bg: blue;
                 --button-fg: white;
                 --button-hover-fg: rgb(120, 120, 255);
@@ -87,7 +96,7 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 --button-border-color: rgba(0, 0, 0, 0);
             }
 
-            .color-theme-green{
+            .color-theme-green, .color-theme-green:before{
                 --button-bg: GreenYellow;
                 --button-fg: DarkGreen;
                 --button-hover-bg: DarkGreen;
@@ -96,11 +105,11 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 --button-active-fg: black;
                 --button-border-color: DarkGreen;
             }
-            .color-theme-red{
+            .color-theme-red, .color-theme-red:before{
                 --button-bg: rgb(220, 0, 0);
                 --button-fg: white;
-                --button-hover-bg: rgb(150, 0, 0);
-                --button-hover-fg: white;
+                --button-hover-fg: rgb(150, 0, 0);
+                --button-hover-bg: white;
                 --button-active-bg: rgb(200, 200, 255);
                 --button-active-fg: black;
                 --button-border-color: rgba(0, 0, 0, 0);
@@ -145,45 +154,58 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
-
-            .sweep-to-right-button {
-                transition: 0.3s;
+            .rotate-rectangle-out-button {
                 transition-property: color;
-                position:relative;
-            }
-            .sweep-to-right-button:before {
-             position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                transform: scaleX(0);
-                color: var(--button-color-focus);
-                background-color: var(--button-fg);
-                transition-property: transform;
-                transition-duration: 0.3s;
-                transform-origin: 0%;
-                content: "";
-                z-index: -1;
-            }
-            .sweep-to-right-button:hover, .sweep-to-right-button:focus, .sweep-to-right-button:active {
-                color: var(--button-hover-fg);
-            }
-            
-            .sweep-to-right-button:hover:before, .sweep-to-right-button:focus:before, .sweep-to-right-button:active:before {
-                transform: scaleX(1);
-            }
-            .sweep-to-right-button {   
+                position:relative; 
+                overflow: hidden;
                 z-index: 1;
             }
+            
+            .shutter{
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                position: absolute;
+                width: 0px;
+                height: 0px;
+                transform: rotate(0deg);
+                transition: var(--animation-time);
+                background-color: var(--button-hover-bg);
+                color: var(--button-hober-fg);
+                overflow: hidden;
+                z-index: 20;
+            }
 
-
+            .rotate-rectangle-out-button:hover>.shutter {
+                transform: rotate(0deg);
+                transform-origin: 50% 50%;
+                transform: rotate(-90deg);
+                width: 100px;
+                height: 100px;
+                transition: var(--animation-time);
+            }
+            .rotate-rectangle-out-button:hover>.shutter>span {
+                transform: rotate(90deg);
+                transition: var(--animation-time);
+            }
+            .shutter-label{
+                position: relative;
+                position: absolute;
+                display: inline-block;
+                color: var(--button-hover-fg);
+                transition: var(--animation-time);
+                z-index: 30;
+            }
+            
             </style>
 
             <div class = "button-wrapper">
                 <div class="button color-theme-blue position-right-top button-big" >
+                    <div class = "shutter">
+                        <span class="shutter-label"></span>
+                    </div>
                     <div class = "circle hidden"></div>
-                    <span></span>
+                    <span class="button-label"></span>
                 </div>
             </div>
         `

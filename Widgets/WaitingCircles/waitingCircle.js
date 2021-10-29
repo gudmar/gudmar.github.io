@@ -14,9 +14,13 @@ class WaitingCircle extends HTMLElement{
             'water-circles-waiting-circle': WaterCirclesWaitingCircle,
             'growing-ring-waiting-circle': GrowingRingWaitingCircle,
             'blinking-dots-waiting-circle': BlinkingDotsWaitingCircle,
+            'flower-waiting-circle': FlowerWaitingCircle,
             'bubbling-circles-waiting-circle': BubblingCirclesWaitingCircle,
             'growing-ring-SVG-waiting-circle':GrowingRingSVGWaitingCircle,
+            'rectangle-waiting-circle':RectangleWaitingCircle,
             'cube-waiting-circle':CubeWaitingCircle,
+            'galaxy-waiting-circle':GalaxyWaitingCircle,
+            'galaxy-waiting-circle-dark-theme':GalaxyWaitingCircleDarkTheme,
             'dark-cube-waiting-circle':CubeWaitingCircle_DarkTheme
         }
         

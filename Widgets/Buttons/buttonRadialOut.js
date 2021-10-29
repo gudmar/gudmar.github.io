@@ -1,4 +1,4 @@
-class SweepToRightButton extends CircleWhereClickedButton{
+class RadialOutButton extends CircleWhereClickedButton{
     constructor(context){
         super(context);
         this.context = context
@@ -99,8 +99,8 @@ class SweepToRightButton extends CircleWhereClickedButton{
             .color-theme-red{
                 --button-bg: rgb(220, 0, 0);
                 --button-fg: white;
-                --button-hover-bg: rgb(150, 0, 0);
-                --button-hover-fg: white;
+                --button-hover-fg: rgb(150, 0, 0);
+                --button-hover-bg: white;
                 --button-active-bg: rgb(200, 200, 255);
                 --button-active-fg: black;
                 --button-border-color: rgba(0, 0, 0, 0);
@@ -145,39 +145,42 @@ class SweepToRightButton extends CircleWhereClickedButton{
                 z-index: 70;
             }
 
-
-            .sweep-to-right-button {
+            .radial-out-button {
                 transition: 0.3s;
                 transition-property: color;
-                position:relative;
+                position:relative;  /* without this whole screan is animated*/
+                overflow: hidden;
             }
-            .sweep-to-right-button:before {
+            .radial-out-button:before {
              position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                transform: scaleX(0);
-                color: var(--button-color-focus);
-                background-color: var(--button-fg);
+                top: -15px;
+                bottom: -15px;
+                left: -15px;
+                right: -15px;
+                transform: scaleX(0) scaleY(0);
+                color: var(--button-hover-fg);
+                background-color: var(--button-hover-bg);
                 transition-property: transform;
                 transition-duration: 0.3s;
-                transform-origin: 0%;
+                transform-origin: 50% 50%; /*start from left side*/
+                border-radius: 50%;
                 content: "";
                 z-index: -1;
             }
-            .sweep-to-right-button:hover, .sweep-to-right-button:focus, .sweep-to-right-button:active {
+            .radial-out-button:hover, .radial-out-button:focus, .radial-out-button:active {
                 color: var(--button-hover-fg);
+                background-color: var(-button-hover-bg);
             }
             
-            .sweep-to-right-button:hover:before, .sweep-to-right-button:focus:before, .sweep-to-right-button:active:before {
-                transform: scaleX(1);
+            .radial-out-button:hover:before, .radial-out-button:focus:before, .radial-out-button:active:before {
+                transform: scaleX(1) scaleY(1);
+                color: var(--button-hover-fg);
+                background-color: var(--button-hover-bg);
             }
-            .sweep-to-right-button {   
+            .radial-out-button {   
                 z-index: 1;
             }
-
-
+            
             </style>
 
             <div class = "button-wrapper">
