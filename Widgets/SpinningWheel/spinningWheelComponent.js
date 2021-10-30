@@ -112,7 +112,6 @@ class SpinningWheelComponent extends StateHandlingAbstractComponent{
                     if (deltaAngle > 1) {
                         _angle = _angle + deltaAngle;
                         deltaAngle = deltaAngle * 0.975;
-                        console.log(deltaAngle)
                     } else {
                         clearInterval(inter)
                         resolve(_angle)
