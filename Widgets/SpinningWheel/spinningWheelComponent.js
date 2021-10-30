@@ -110,8 +110,9 @@ class SpinningWheelComponent extends StateHandlingAbstractComponent{
                 inter = setInterval(function () {
                     movedObject.setAttributeNS(null, 'transform', `rotate(${_angle}, ${radius}, ${radius})`);
                     if (deltaAngle > 1) {
-                        _angle += deltaAngle;
-                        deltaAngle *= 0.99;
+                        _angle = _angle + deltaAngle;
+                        deltaAngle = deltaAngle * 0.975;
+                        console.log(deltaAngle)
                     } else {
                         clearInterval(inter)
                         resolve(_angle)
