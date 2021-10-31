@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spinning wheel</title>
+
+    <link rel="stylesheet" href="./css/index.css">
+
+    <script src="./js/abstractCustomWebComponent.js" defer></script>
+    <script src="./js/reusableNotWheelRelated/button.js" defer></script>
+    <script src="./js/reusableNotWheelRelated/modal.js" defer></script>
+    <script src="./js/modalContentWatcher.js" defer></script>
+    <script src="./js/reusableNotWheelRelated/infoModal.js" defer></script>
+    <script src="./js/colorGenerator.js" defer></script>
+    <script src="./js/reusableNotWheelRelated/colorPresenter.js" defer></script>
+    <script src="./js/stateHandlingAbstractComponent.js" defer></script>
+    <script src="./js/wheelDrawer.js" defer></script>
+    <script src="./js/spinningWheelComponent.js" defer></script>
+    <script src="./js/spinningWheelWithInfoComponent.js" defer></script>
+    <script src="./js/testWheelStatistic/testStatisticsSpinningWheelComponent.js" defer></script>
+    <script src="./js/testWheelStatistic/countWinningStatistics.js" defer></script>
+    <script src="./js/listForEditingWheelsState/listEditingState.js" defer></script>
+    <script src="./js/listForEditingWheelsState/listEditingStateResponsive.js" defer></script>
+    <script src="./js/wrapWheelAndServingWidgets/wheelManager.js" defer></script>
+    <script src="./js/index.js" defer></script>
+
+
+</head>
+<body>
+    <hidable-modal id = "modal-colors"><color-presenter></color-presenter></hidable-modal>
+    <hidable-modal id = "modal-statistics" data-visible=false><winnig-statistics data-nr-of-executions = "100" ></winnig-statistics></hidable-modal>
+    <hidable-modal id = "modal-statistics" data-visible=false><winnig-statistics data-nr-of-executions = "100" ></winnig-statistics></hidable-modal>
+
+    <div id="menu">
+        <custom-button data-label="Present colors" value="show" onClick="showModal('modal-colors')"></custom-button>
+        <custom-button data-label="Statistics"  value="show" onClick="showModal('modal-statistics')"></custom-button>
+        <custom-button data-label="Set random"  value="show" onClick="addInnerHTML('master-mediator-id')"></custom-button>
+        <custom-button data-label="Del master mediator" id = "remove-master-mediator-button-id"  value="show" onClick="toggleMasterMediator()"></custom-button>
+        <custom-button data-label="Clear console"  value="show" onClick="console.clear()"></custom-button>
+    </div>
+    <div class = "top" id = "wheelContainerId">
+
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            let spinnersAdder = new ManySpinningWheelsAdder(20);
+            spinnersAdder.placeAllElements('wheelContainerId');
+            spinnersAdder.addMediatorsToEachWrapper()
+            spinnersAdder.activateButtons();
+
+            spinnersAdder.addMasterMediatorForAllMediatorObjects();
+        })
+
+
+        function addMasterMediator(){
+            let spinnersAdder = new ManySpinningWheelsAdder(4);
+            spinnersAdder.addMasterMediatorForAllMediatorObjects();
+        }
+
+        function showModal(id){
+            document.getElementById(id).setAttribute('data-visible', true)
+        }
+        function getDummyUlAsString(nrOfLiItems){
+            let getLi = function(index) { return `<li data-label = ${index}>Content ${index}</li>`}
+            let getAllLi = function(nrOfLiItems) {
+                let allLiHtml = '';
+                for (let i = 0; i < nrOfLiItems; i++){
+                    allLiHtml = allLiHtml + getLi(i)
+                }
+                return allLiHtml
+            }
+            return `<ul>${getAllLi(nrOfLiItems)}</ul>`
+        }
+        function getRandomNumberFrom4To8(){
+            return Math.floor(Math.random()*4) + 4
+        }
+        function addInnerHTML(id){
+
+            try{
+                document.getElementById(id).children[0].innerHTML = getDummyUlAsString(getRandomNumberFrom4To8())
+            } catch (e) {
+                console.warn('Master mediator is removed at the moment')
+            }
+        }
+        function toggleMasterMediator(){
+            let toggleButton = document.getElementById('remove-master-mediator-button-id')
+            let masterMediator = document.getElementById('master-mediator-id')
+            if (masterMediator == null){
+                addMasterMediator();
+                toggleButton.setAttribute('data-label', 'Del master mediator')
+            } else {
+                masterMediator.parentNode.removeChild(masterMediator)
+                toggleButton.setAttribute('data-label', 'Add master mediator')
+            }
+        }
+        function addInnerHTMLToMediator(id){
+            document.getElementById(id).innerHTML = `
+            <ul>
+                        <li>some 1</li>
+                        <li>some 2</li>
+
+                    </ul>
+                `
+        }
+    </script>
+    
+</body>
+</html>
+
+
