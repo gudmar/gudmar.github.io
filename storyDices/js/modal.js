@@ -45,6 +45,7 @@ class ModalGeneral{
             thisElement.parentNode.removeChild(thisElement)
             onClose();
         } catch(e) {
+            console.log(e);
             throw new Error(`${this.constructor.name} cannot remove modal ${this.id} from DOM ${e}`)
         }
         delete this

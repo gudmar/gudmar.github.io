@@ -32,26 +32,32 @@ class CubeManager{
 
         new StoryCubesMenu('.root', {
             drawAllElements: this.recreateSetOfCubes.bind(this),
-            openAboutHandler: this.createAboutModal,
-            openRulesHandler: this.createRulesMenu,
+            openAboutHandler: this.createAboutModal.bind(this),
+            openRulesHandler: this.createRulesMenu.bind(this),
             openSettingsHandler: this.createSettingsModal.bind(this)
         })
     }
 
-    _setStateIncludingLocalStorage(defaultState){
-        [_symbolArray, _nrOfCubes] = defaultState;
-        let localStorageSymbols = localStorage.getItem('chosenSymbolArrays')
-        let localStorageNrOfCubes = localStorage.getItem('nrOfCubes')
-        if (localStorageSymbols == null) {
-            this.state.chosenSymbolArrays = defaultState.chosenSymbolArrays
-        } else {
-            this.state.chosenSymbolArrays = localStorageSymbols
-        }
-        if (localStorageNrOfCubes == null) {
-            this.state.nrOfCubes = defaultState.localStorageNrOfCubes
-        } else {
-            this.state.chosenSymbolArrays = defaultState.nrOfCubes
-        }
+    // _setStateIncludingLocalStorage(defaultState){
+    //     [_symbolArray, _nrOfCubes] = defaultState;
+    //     let localStorageSymbols = localStorage.getItem('chosenSymbolArrays')
+    //     let localStorageNrOfCubes = localStorage.getItem('nrOfCubes')
+    //     if (localStorageSymbols == null) {
+    //         this.state.chosenSymbolArrays = defaultState.chosenSymbolArrays
+    //     } else {
+    //         this.state.chosenSymbolArrays = this.arrOfString2ArrOfNum(localStorageSymbols);
+    //     }
+    //     if (localStorageNrOfCubes == null) {
+    //         this.state.nrOfCubes = defaultState.localStorageNrOfCubes
+    //     } else {
+    //         this.state.chosenSymbolArrays = defaultState.nrOfCubes
+    //     }
+    //     console.log(this.state)
+    // }
+
+    arrOfString2ArrOfNum(arr){
+        arr.forEach((element)=>{return parseInt(element)});
+        return arr;
     }
 
     _mapIndexesToSymbolArrayNames(arrayOfIndexes) {
@@ -63,10 +69,8 @@ class CubeManager{
     }
 
     _arrOfCategories() {
-        console.log(this.state.chosenSymbolArrays)
-        console.log(Array.isArray(this.state.chosenSymbolArrays))
         return this._mapIndexesToSymbolArrayNames(this.state.chosenSymbolArrays);
-        return this.arrOfCat?this.arrOfCat:this._mapIndexesToSymbolArrayNames(this.state.chosenSymbolArrays);
+        // return this.arrOfCat?this.arrOfCat:this._mapIndexesToSymbolArrayNames(this.state.chosenSymbolArrays);
     }
 
 
@@ -112,11 +116,11 @@ class CubeManager{
             this._settingsExtentionsGroup(settingsManager.topicSymbolGroupHandler.bind(settingsManager)), 
             this._settingsNrOfCubesGroup(settingsManager.nrOfCubesChangeHandler.bind(settingsManager))
         ]
-        new SettingsModal(sectionsOfSettingsMenu, this._mergeState.bind(this, settingsManager.onClose()))
+        new SettingsModal(sectionsOfSettingsMenu, this._mergeState.bind(this, settingsManager.onClose()), )
     }
 
     createRulesMenu() {
-        let rulesMenu = new RulesModal();
+        let rulesMenu = new RulesModal(); // empty, works, there is some default value, error soudl not appear
     }
 
     _mergeState(newState){
@@ -128,15 +132,19 @@ class CubeManager{
             } else {
                 arr2.forEach((element, index) => {
                     if (arr1.includes(element)) {
-                        nrOfEqualElements++;
-                    } else {
-                        return false;
+                        nrOfEqualElements = nrOfEqualElements + 1;
                     }
                 })
+                if (arr1.length == nrOfEqualElements) return true;
+                return false;
+                // if (arr1.length != nrOfEqualElements) return false;
             }
-            if (nrOfEqualElements == len1) {return true} else {
-                throw new Error(`${this.constructor.name}: there is something really wrong in _mergeState.areArraysEqual, because this error should be unreachable code`)
-            }
+            // if (nrOfEqualElements == len1) {return true} else {
+            //     console.log(arr1)
+            //     console.log(arr2)
+            //     console.error('Arrays above are nuequarl. There is "0" and 0, so stinr and number')
+            //     throw new Error(`${this.constructor.name}: there is something really wrong in _mergeState.areArraysEqual, because this error should be unreachable code`)
+            // }
         }.bind(this)
         let areElementsEqualShalow = function(el1, el2) {
             if (Array.isArray(el1)) {
@@ -161,8 +169,13 @@ class CubeManager{
             let keysForConverion = ['chosenSymbolArrays']
             return (keysForConverion.includes(key)) ? true : false;
         }
-        let convertStrToArrayIfNeeded = function(key, value) {
+        let convertStrToArrayOfStringsIfNeeded = function(key, value) {
             return isConversionToArrayNeeded(key) ? value.split(',') : value;
+        }
+        let arrayOfStrings2ArrayOfNums = function(arr){
+            let arrCp = [];
+            arr.forEach((element)=>{ arrCp.push(parseInt(element))})
+            return arrCp;
         }
         let newState = {};
         for (let key in defaultState) {
@@ -171,8 +184,12 @@ class CubeManager{
             if (fromLocalStorage == null || fromLocalStorage == undefined) {
                 newState[key] = defaultState[key]
             } else {
-                console.log(convertStrToArrayIfNeeded(key, localStorage.getItem(key)))
-                newState[key] = convertStrToArrayIfNeeded(key, localStorage.getItem(key))
+                let value = convertStrToArrayOfStringsIfNeeded(key, localStorage.getItem(key));
+                if (Array.isArray(value)){
+                    newState[key] = arrayOfStrings2ArrayOfNums(value);
+                } else{
+                    newState[key] = parseInt(value)
+                }
             }
         }
         return newState;
@@ -183,6 +200,7 @@ class CubeManager{
         for (let cat of this._arrOfCategories()) {
             arr = [...arr, ...this.symbolDB.getSymbolsByDN(cat)]
         }
+        console.log(arr);
         return arr;
     }
 
@@ -222,24 +240,18 @@ class CubeManager{
             listOfSwitches: listOfSwitches
         }
     }
-
 }
 
 class SettingsManager {
     constructor(supprotedNames, supportedNumbersOfCubes, currentState){
-        
         this.supportedNames = [...supprotedNames]
         this.supportedNumbersOfCubes = [...supportedNumbersOfCubes]
         this.stateCopy = this._copyObject(currentState)
     }
 
-    _copyObject(obj) {
-        return JSON.parse(JSON.stringify(obj))
-    }
+    _copyObject(obj) {return JSON.parse(JSON.stringify(obj))}
 
-    _getLabel(e) {
-        return  e.target.dataset.label
-    }
+    _getLabel(e) {return  e.target.dataset.label}
 
     _mapIndexesToSymbolArrayNames(arrayOfIndexes) {
         let mapFunction = function(current, index, arr) {
@@ -258,6 +270,7 @@ class SettingsManager {
     }
 
     isLabelInLocalState(label) {
+        let output = this._mapIndexesToSymbolArrayNames(this.stateCopy.chosenSymbolArrays).includes(label)?true:false;
         return this._mapIndexesToSymbolArrayNames(this.stateCopy.chosenSymbolArrays).includes(label)?true:false
     }
     removeLabelFromLocalState = function(label){
@@ -265,8 +278,8 @@ class SettingsManager {
         this.stateCopy.chosenSymbolArrays.splice(this.stateCopy.chosenSymbolArrays.indexOf(this._mapTopicToIndex(label)), 1)
     }
     addLabelToLocalState(label) {
-        let labelIndex = this.supportedNames.indexOf(label)
-        this.stateCopy.chosenSymbolArrays.push(labelIndex)
+        let labelIndex = this.supportedNames.indexOf(label);
+        this.stateCopy.chosenSymbolArrays.push(labelIndex);
     }
 
     topicSymbolGroupHandler(e){
@@ -302,22 +315,6 @@ class SettingsManager {
 
 
 }
-
-
-// [
-//     {
-//         groupName: "Extentions",
-//         listOfSwitches: [
-//             {
-//                 type: string,
-//                 label: string,
-//                 handler: 'function',
-//                 defaultValue: 'string'
-//             }
-//         ]
-//     }
-// ]
-
 let manager = {}
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -325,7 +322,3 @@ window.addEventListener('DOMContentLoaded', (event) => {
         placeholder: document.querySelector('.wrapper')
     })
 });
-
-// let manager = new CubeManager({
-//     placeholder: document.querySelector('.wrapper')
-// })

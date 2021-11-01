@@ -41,6 +41,7 @@ class SettingsModal{
         try{
             document.querySelector(placeholderSelector).appendChild(settingsElement)
         } catch(e) {
+            console.log(e)
             NiceLogger.logError(`${this.constructor.name}: probably placeholderSelector is not valid`)
         }
         this.onClose = onClose;
