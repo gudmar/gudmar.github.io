@@ -75,10 +75,16 @@ class MultipositionalSlider extends AbstractElement{
                     border-radius: 50%;
                     border: none;
                     padding: 0;
-                    background-color: var(--background-gray);
+                    background-color: var(--color-on);
+                    color:white;
+                    z-index: 10;
                     top: -0%;
                     left: -2px;
-                    box-shadow: inset 0 0 5px #777;
+                    box-shadow: inset 0 0 5px #321;
+                }
+                .slider-movable:hover{
+                    cursor: default!important;
+                    background-color: var(--color-on)!important;
                 }
                 ${this._getCSSDefinitionsForEachPositionClass()}
                 ${this._getSetOfPositionHoverCSSDefinitions()}
@@ -87,10 +93,10 @@ class MultipositionalSlider extends AbstractElement{
                     position: absolute;
                 }
                 .position-placeholder{
-                    // position: relative;
                     left: -12%;
                     border-radius: 50%;
                     border: gray solid thin;
+                    background-color: var(--background-gray);
                     width: ${this._get_PLECEHOLDER_SIZE()}px;
                     height: ${this._get_PLECEHOLDER_SIZE()}px;
                     box-shadow: inset 0 0 5px #777;
@@ -141,6 +147,7 @@ class MultipositionalSlider extends AbstractElement{
 
                 <div class = "slider-track">
                     <div class = "slider-movable ${this._getPositionClassName(this._getPosition())} center">
+                    ✔
                     </div>
                     ${this._getAllPlaceholderElements()}
                 </div>

@@ -84,6 +84,7 @@ class CubeSet{
         try{
             cube.setContent(this.drawingIterator.drawSymbols(1, this._getSymbolsToRemove()));
         } catch(e) {
+            console.log(e)
             NiceLogger.logInfo(`${this.constructor.name}: symbols cannot be injected into cubes. Looks like no array of symbols passed.`)
         }
     }

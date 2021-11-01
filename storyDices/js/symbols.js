@@ -58,8 +58,21 @@ class Symbols{
             boat: '&#9972;',
             tent: '&#9978;',
             cactus: '&#127797;',
-            beach: '&#127958;'
-
+            beach: '&#127958;',
+            fruit: '&#127817;',
+            japan: '&#127886;',
+            volcano: '&#127956;',
+            chiaTemple: '&#127983;',
+            tiger: '&#128005;',
+            snake: '&#128013;',
+            ant: '&#128028;',
+            pinguin: '&#128039;',
+            camel: '&#128043;',
+            pistol: '&#128299;',
+            time: '&#128346;',
+            train: '&#128642;',
+            ropeway: '&#128673;',
+            noEntrance: '&#128695;',
         }
         return Symbols._object2Array(symbols);
         }
@@ -73,7 +86,15 @@ class Symbols{
             meta: '&#127937;',
             motor: '&#127949;',
             golf: '&#127953;',
-            tenis: '&#127955;'
+            tenis: '&#127955;',
+            backpack: '&#127890;',
+            film: '&#127909;',
+            swim: '&#127946;',
+            archery: '&#127993;',
+            dancing: '&#128111;',
+            cycle: '&#128690;',
+            strongman: '&#127947;',
+
         }
         return Symbols._object2Array(symbols);
     }
@@ -93,7 +114,8 @@ class Symbols{
             snowman: '&#9731;',
             coffee: '&#9749;',
             skull: '&#9760;',
-            sierpIMlot: '&#9773;'
+            sierpIMlot: '&#9773;',
+            fuckYou: '&#128405;',
         }
     }
 }
