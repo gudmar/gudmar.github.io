@@ -1,0 +1,94 @@
+About notePad
+
+This Angular application is inspired by Microsoft oneNote, however it is a little more extended as it consists of note pad and callendar part. It is for saving notes devided into pages and sheets. In callendar tasks can be added, removed, moved. State of application is saved to local storage in browser, and can be exported to a file. 
+
+Features
+
+Adding notes
+	Options menu, chose <i>Edit mode</i>, click on page area, not occupated by other note object
+Removing notes
+	Click <i>X</i> button in right upper notes corner
+Moving notes
+	Drag and move circle with four arrows in upper notes part
+resizing notes
+	Drag and move green dot in right lower note corner
+Adding pages
+	Click <i>+</i> tab in upper part of application
+Removing pages
+	Click <i>X</i> symbol in right part of page tab. If there exist any notes on page confirmation message box will be displayed
+Selecting page
+	Click on tab with page name in upper part of application
+Background color of page
+	Is generated automaticly. Algoritm generates colors that are distinguishable, readable and plesent for eyes
+Font color
+	White or black. Is selected automaticly if background light is > 50% foreground color is black, else it is white.
+Renamign page
+	Double click on page tab and print new name
+Adding sheet with a single page
+	Click <i>Add +</i> tab in left side of application
+	
+Removing sheets
+	Click <i>X</i> symbol in left part of sheet tab. If there exist some notes, or there are more pages than single one, added by default, confiramtion box will be displayed to ensure user did not click delete button by accident.
+Renaming sheets
+	Double click sheet tab (left side of application)
+Saving current document to local storage
+	Menu (upper left corner), save, or <i>Ctrl+s</i>. Animation should aknowledge that data was saved.
+Saving current document to a file
+	Menu (upper left corner), save file. Dialog window will be showed and default name of file will be proposed.
+It might be changed
+
+Loading form a file
+	Valid file should be dragged and dropped onto page component area. Then file is loaded
+
+File validation
+	Files that are to be loaded by application are valideated. Not valid files cannot be uploaded.
+
+Loading from local storage
+	menu (upper left corner), Load button. Name of data key should be chosen by user, and operation should be confirmed with <i>Load</i> button
+
+Deleting a key from local storage 
+	From menu in upper left corner chose load option. When menu is displayed chose key and click Remove. Then close load form.
+
+
+
+Calendar
+
+
+
+Year view
+	After launching calendar (upper left menu and calendar button), year view is displayed. in upper bar year number can be changed. Year is calculated dynamicly. Years from 1000 to 3000 are available. Buttons <i>>></i> and <i><<</i> are designed to switch to next and previous year.
+
+Tasks in year view
+	If there are any tasks added to day in year view, number of tasks will be displayed in red circle in right upper day corner. Moreover the more tasks are planned for the day, darker the day background will be.
+
+Calendar weeks
+	Year view is displayed with calendar weeks and each month has days belonging to a calendar week, but not belonging to current month grayed.
+
+Day view
+	After clicking day in year view, day view will be showed. One may add, remove and rescheadule tasks with help of this widget.
+
+Adding a task to calendar
+	Click day in clendar year view. If there are no tasks planned for that day, click <i>+</i> symbol in the middle of day window. In case there are already tasks planned for the day, click green <i>+</i> symbol in the right part of task. New task will be added before clicked one.
+
+Removing task
+	Click day in claendar year view. Click red <i>-</i> button in right part of task row. Task will be removed.
+
+Move task
+	Click day in calendar year view. Click <i>move</i> label in right part of task row. Widow will pop out and there new date might be chosen.
+
+Date validation
+	Year field in year view and date fields in move event to window are validated. If not valid option is chosen, field background will change to red, and after field loses focus, last valid value will be inserted into field.
+
+Week view
+	After clicking on calendar week number a week view will open. User may review week tasks and open day view by clicking a certain day. No descriptions are available in week view. Just summaries.
+
+Summary field validation
+	Only up to 50 characters can be written to summary field. Otherwise it will be colored red and last valid value will be entered after it loses focus.
+
+
+
+
+	
+
+
+

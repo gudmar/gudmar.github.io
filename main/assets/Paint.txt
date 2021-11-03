@@ -1,0 +1,17 @@
+About application
+
+This is a very simple svg creator, thats implementation took less than one day. It was my dream to create something like this, but it seemd a bit complex at first.
+Finally when things went bed and I got tangled in even small projects, where only a few components were binded, I learned about design patterns. 
+A good example of bridge pattern with abstraction was paint. Abstract layer knows that figure can be created, or resized, but implementation of drawing a triangle or circle is 
+in layer down. 
+This paint application is really simple and is not finished, but it works. Save button prints svg to console, and a string can be copied after hitting F12. 
+Save to file option still not implemented.
+
+Features
+
+User may draw a path, rectangle, circle or triangle. Each figure may have a fill. User may change colors of contours or fill. There is a switch button for this.
+Yellow, red, green, blue, brown, black or no color can be chosen.
+
+Links: 
+	https://gudmar.github.io/paint/
+	Not on github? :o
